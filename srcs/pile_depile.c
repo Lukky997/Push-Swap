@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:41:32 by lgoras            #+#    #+#             */
-/*   Updated: 2025/02/06 14:22:23 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/02/26 17:36:32 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,54 +19,54 @@ t_pile	*initialisation(void)
 	pile = malloc(sizeof(*pile));
 	if (pile == NULL)
 		exit(EXIT_FAILURE);
-	pile->premier = NULL;
-	pile->nombre_element = 0;
+	pile->first = NULL;
+	pile->nb_element = 0;
 	return (pile);
 }
 
-void	empiler(t_pile *pile, int nouveau_nombre)
+void	empiler(t_pile *pile, int nouveau_number)
 {
 	t_element	*nouveau;
-	t_element	*actuel;
+	t_element	*current;
 
-	actuel = pile->premier;
+	current = pile->first;
 	nouveau = malloc(sizeof(*nouveau));
 	if (pile == NULL || nouveau == NULL)
 		exit(EXIT_FAILURE);
-	if (pile->premier == NULL)
+	if (pile->first == NULL)
 	{
-		nouveau->nombre = nouveau_nombre;
-		nouveau->suivant = pile->premier;
-		pile->premier = nouveau;
-		pile->nombre_element += 1;
+		nouveau->number = nouveau_number;
+		nouveau->next = pile->first;
+		pile->first = nouveau;
+		pile->nb_element += 1;
 	}
 	else
 	{
-		while (actuel->suivant)
-			actuel = actuel->suivant;
-		nouveau->nombre = nouveau_nombre;
-		nouveau->suivant = NULL;
-		actuel->suivant = nouveau;
-		pile->nombre_element += 1;
+		while (current->next)
+			current = current->next;
+		nouveau->number = nouveau_number;
+		nouveau->next = NULL;
+		current->next = nouveau;
+		pile->nb_element += 1;
 	}
 }
 
 int	depiler(t_pile *pile)
 {
-	int			nombre_depile;
+	int			number_depile;
 	t_element	*element_depiler;
 
 	if (pile == NULL)
 		exit(EXIT_FAILURE);
-	nombre_depile = 0;
-	element_depiler = pile->premier;
-	if (pile != NULL && pile->premier != NULL)
+	number_depile = 0;
+	element_depiler = pile->first;
+	if (pile != NULL && pile->first != NULL)
 	{
-		nombre_depile = element_depiler->nombre;
-		pile->premier = element_depiler->suivant;
+		number_depile = element_depiler->number;
+		pile->first = element_depiler->next;
 		free(element_depiler);
 	}
-	return (nombre_depile);
+	return (number_depile);
 }
 
 void	suppression(t_pile *pile)
@@ -75,10 +75,10 @@ void	suppression(t_pile *pile)
 
 	if (pile == NULL)
 		exit(EXIT_FAILURE);
-	while (pile->premier != NULL)
+	while (pile->first != NULL)
 	{
-		to_delete = pile->premier;
-		pile->premier = pile->premier->suivant;
+		to_delete = pile->first;
+		pile->first = pile->first->next;
 		free(to_delete);
 	}
 	free(pile);
@@ -86,16 +86,16 @@ void	suppression(t_pile *pile)
 
 void	afficher_pile(t_pile *pile)
 {
-	t_element	*actuel;
+	t_element	*current;
 
 	if (pile == NULL)
 		exit(EXIT_FAILURE);
-	actuel = pile->premier;
-	while (actuel != NULL)
+	current = pile->first;
+	while (current != NULL)
 	{
-		ft_printf("| %d |\n", actuel->nombre);
-		actuel = actuel->suivant;
+		ft_printf("| %d |\n", current->number);
+		current = current->next;
 	}
 	ft_printf("NULL\n");
-	ft_printf("Nombre element : %d\n", pile->nombre_element);
+	ft_printf("Number element : %d\n", pile->nb_element);
 }

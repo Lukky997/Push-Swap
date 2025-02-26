@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:49:50 by lgoras            #+#    #+#             */
-/*   Updated: 2025/02/06 14:30:24 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/02/26 17:35:05 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	reverse_rotate(t_pile *pile)
 {
 	t_element	*temp;
-	t_element	*actuel;
+	t_element	*current;
 
-	actuel = pile->premier;
-	while (actuel->suivant->suivant)
-		actuel = actuel->suivant;
-	temp = actuel->suivant;
-	actuel->suivant = NULL;
-	temp->suivant = pile->premier;
-	pile->premier = temp;
+	current = pile->first;
+	while (current->next->next)
+		current = current->next;
+	temp = current->next;
+	current->next = NULL;
+	temp->next = pile->first;
+	pile->first = temp;
 }
 
 void	rra(t_pile *pile_a)

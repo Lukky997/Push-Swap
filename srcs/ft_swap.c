@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:45:11 by lgoras            #+#    #+#             */
-/*   Updated: 2025/02/04 16:12:14 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/02/26 17:34:43 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	ft_swap(t_pile *pile)
 {
 	t_element	*temp;
-	t_element	*actuel;
+	t_element	*current;
 
 	if (pile == NULL)
 		return ;
-	actuel = pile->premier;
-	temp = actuel->suivant;
-	actuel->suivant = actuel->suivant->suivant;
-	temp->suivant = actuel;
-	pile->premier = temp;
+	current = pile->first;
+	temp = current->next;
+	current->next = current->next->next;
+	temp->next = current;
+	pile->first = temp;
 }
 
 void	sa(t_pile *pile_a)
