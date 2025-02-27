@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:41:36 by lgoras            #+#    #+#             */
-/*   Updated: 2025/02/26 17:59:47 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/02/27 15:15:34 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void					rrr(t_pile *pile_a, t_pile *pile_b);
 char					**ft_split(char const *s, char c);
 int						main(int argc, char **argv);
 int						pile_sorted(t_pile *pile);
+void					fill_a(t_pile *pile_a, char **argv);
+int						len_a(t_pile *pile_a);
 // void					push_swap(t_pile *pile_a, t_pile *pile_b);
-// void					sort_three(t_element **pile_a);
+void					sort_three(t_pile *pile_a);
 
 #endif

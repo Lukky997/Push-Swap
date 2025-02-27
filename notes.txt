@@ -24,22 +24,22 @@ such as 3–2–1. And a sequence where the greatest number and second greatest 
 switched places such as 1–3–2. Both scenarios would require two operations)
 So remember this magic number.
 
-Pour verifier sui la pile est trie ;
 
-current a = next du a
+typedef struct s_element
+{
+	int					number;
+	int					push_cost;
+	int					above_median;
+	struct s_element	*target_node;
+	struct s_element	*next;
+}						t_element;
 
-while (current_a != null)
-    if (a > a->next)
-        return(0);
-    current_a = current_a->next
+typedef struct s_pile
+{
+	t_element			*first;
+	int					nb_element;
+}
 
-1
-2
-5
-4
+tant que i< la taille de av
 
-5
-4
-3
-2
-1
+inserer pile a ,atoi(av[i])
