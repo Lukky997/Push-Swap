@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 14:24:23 by lgoras            #+#    #+#             */
-/*   Updated: 2025/02/12 13:28:17 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/03/06 15:00:31 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static size_t	len_str(char const *s, char c)
 	return (i);
 }
 
-static char	**free_split(char **s)
+char	**free_split(char **s)
 {
 	size_t	i;
 

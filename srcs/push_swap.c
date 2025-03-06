@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:09:16 by lgoras            #+#    #+#             */
-/*   Updated: 2025/02/27 15:26:50 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/03/06 15:01:55 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	pile_sorted(t_pile *pile)
 {
-	t_element	*current_a;
+	t_element	*current;
 
-    if (!pile || !pile->first)
+	if (!pile || !pile->first)
 		return (1);
-	current_a = pile->first;
-	while (current_a->next)
+	current = pile->first;
+	while (current->next)
 	{
-		if (current_a->number > current_a->next->number)
+		if (current->number > current->next->number)
 			return (0);
-		current_a = current_a->next;
+		current = current->next;
 	}
 	return (1);
 }

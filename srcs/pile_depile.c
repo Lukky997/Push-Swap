@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:41:32 by lgoras            #+#    #+#             */
-/*   Updated: 2025/02/26 17:36:32 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/03/06 15:01:43 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_pile	*initialisation(void)
 {
-	t_pile		*pile;
+	t_pile	*pile;
 
 	pile = malloc(sizeof(*pile));
 	if (pile == NULL)
@@ -30,8 +30,10 @@ void	empiler(t_pile *pile, int nouveau_number)
 	t_element	*current;
 
 	current = pile->first;
+	if (pile == NULL)
+		return ;
 	nouveau = malloc(sizeof(*nouveau));
-	if (pile == NULL || nouveau == NULL)
+	if (nouveau == NULL)
 		exit(EXIT_FAILURE);
 	if (pile->first == NULL)
 	{
