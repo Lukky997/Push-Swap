@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:34:27 by lgoras            #+#    #+#             */
-/*   Updated: 2025/03/06 14:58:23 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/11 12:36:53 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	main(int argc, char **argv)
 			sort_three(pile_a);
 		else if (pile_a->nb_element == 2)
 			sa(pile_a);
-		// else
-		// 	push_swap(&pile_a, &pile_b);
+		else
+			push_swap(&pile_a, &pile_b);
 	}
 	afficher_pile(pile_a);
 	suppression(pile_a);

@@ -10,7 +10,7 @@ PATH_SRCS = srcs
 HEADER = $(INCLUDE)/push_swap.h
 
 SRCS = $(addprefix $(PATH_SRCS)/, ft_swap.c pile_depile.c ft_push.c ft_rotate.c \
-		ft_reverse_rotate.c push_swap.c ft_split.c main.c)
+		ft_reverse_rotate.c push_swap.c ft_split.c biggest_and_smallest.c main.c)
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

@@ -43,3 +43,5 @@ typedef struct s_pile
 tant que i< la taille de av
 
 inserer pile a ,atoi(av[i])
+
+

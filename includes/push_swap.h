@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:41:36 by lgoras            #+#    #+#             */
-/*   Updated: 2025/03/06 15:01:08 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/11 12:54:06 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_element
 typedef struct s_pile
 {
 	t_element			*first;
+	struct s_element	*smallest;
+	struct s_element	*biggest;
 	int					nb_element;
 }						t_pile;
 
@@ -58,7 +60,9 @@ int						main(int argc, char **argv);
 int						pile_sorted(t_pile *pile);
 void					fill_a(t_pile *pile_a, char **argv);
 int						len_a(t_pile *pile_a);
-// void					push_swap(t_pile *pile_a, t_pile *pile_b);
+void					push_swap(t_pile *pile_a, t_pile *pile_b);
 void					sort_three(t_pile *pile_a);
+void					find_smallest_and_biggest(t_pile *pile_a,
+							t_pile *pile_b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:09:16 by lgoras            #+#    #+#             */
-/*   Updated: 2025/03/06 15:01:55 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/11 12:56:47 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,21 @@ void	sort_three(t_pile *pile)
 		sa(pile);
 }
 
-// void	push_swap(t_pile *pile_a, t_pile *pile_b)
-// {
-// 	t_element *current_a;
-// 	t_element *current_b;
+void	push_swap(t_pile *pile_a, t_pile *pile_b)
+{
+	t_element *current_a;
+	t_element *current_b;
 
-// 	pb(pile_b, pile_a);
-// 	pb(pile_b, pile_a);
-// 	while (!pile_sorted(pile_a))
-// 	{}
-// }
+	pb(pile_b, pile_a);
+	pb(pile_b, pile_a);
+	while (!pile_sorted(pile_a) && pile_b->nb_element > 0)
+	{
+		find_target(pile_a, pile_b);
+	}
+}
+
+void	find_target(t_pile *pile_a, t_pile *pile_b)
+{
+	find_smallest_and_biggest(pile_a, pile_b);
+	
+}
