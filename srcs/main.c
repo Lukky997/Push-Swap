@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:34:27 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/11 12:36:53 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/11 13:24:52 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	main(int argc, char **argv)
 		numbers = argv + 1;
 	pile_a = initialisation();
 	pile_b = initialisation();
-	printf("ok\n");
 	fill_a(pile_a, numbers);
 	if (argc == 2)
 		free_split(numbers);
