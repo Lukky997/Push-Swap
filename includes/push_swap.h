@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:41:36 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/11 12:54:06 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/15 11:22:04 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void					push_swap(t_pile *pile_a, t_pile *pile_b);
 void					sort_three(t_pile *pile_a);
 void					find_smallest_and_biggest(t_pile *pile_a,
 							t_pile *pile_b);
+void	find_target(t_pile *pile_a, t_pile *pile_b);
 
 #endif

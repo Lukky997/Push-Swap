@@ -7,15 +7,30 @@ INCLUDE_PRINTF = $(PRINTF_DIR)/includes
 INCLUDE = includes
 
 PATH_SRCS = srcs
+PATH_CMDS = $(PATH_SRCS)/commands
 HEADER = $(INCLUDE)/push_swap.h
 
-SRCS = $(addprefix $(PATH_SRCS)/, ft_swap.c pile_depile.c ft_push.c ft_rotate.c \
-		ft_reverse_rotate.c push_swap.c ft_split.c biggest_and_smallest.c main.c)
+SRCS = \
+	$(PATH_CMDS)/ft_swap.c \
+	$(PATH_CMDS)/ft_push.c \
+	$(PATH_CMDS)/ft_rotate.c \
+	$(PATH_CMDS)/ft_reverse_rotate.c \
+	$(PATH_CMDS)/sort_three.c \
+	$(PATH_SRCS)/pile_depile.c \
+	$(PATH_SRCS)/push_swap.c \
+	$(PATH_SRCS)/ft_split.c \
+	$(PATH_SRCS)/biggest_and_smallest.c \
+	$(PATH_SRCS)/utils.c \
+	$(PATH_SRCS)/target.c \
+	$(PATH_SRCS)/cost.c \
+	$(PATH_SRCS)/algo.c \
+	$(PATH_SRCS)/main.c
+
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(PATH_SRCS)/%.o: $(PATH_SRCS)/%.c $(HEADER)
+%.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) -I$(INCLUDE) -I$(INCLUDE_PRINTF) -c $< -o $@
 
 $(NAME): $(OBJS) $(PRINTF)
