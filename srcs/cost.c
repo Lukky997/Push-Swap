@@ -6,8 +6,13 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 12:29:12 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/11 12:29:58 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/15 13:06:06 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	calculate_cost(t_pile *pile_a, t_pile *pile_b)
+{
+	
+}

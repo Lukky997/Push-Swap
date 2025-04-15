@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 12:53:00 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/11 12:53:12 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/15 12:14:12 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ void find_smallest_and_biggest(t_pile *pile_a, t_pile *pile_b)
 	pile_b->smallest = current_b;
 	while(current_a)
 	{
-		if (current_a->number > pile_a->biggest)
+		if (current_a->number > pile_a->biggest->number)
 			pile_a->biggest = current_a;
-		if (current_a->number > pile_a->smallest)
+		if (current_a->number < pile_a->smallest->number)
 			pile_a->smallest = current_a;
 		current_a = current_a->next;
 	}
 	while(current_b)
 	{
-		if (current_b->number > pile_b->biggest)
+		if (current_b->number > pile_b->biggest->number)
 			pile_b->biggest = current_b;
-		if (current_b->number > pile_b->smallest)
+		if (current_b->number < pile_b->smallest->number)
 			pile_b->smallest = current_b;
 		current_b = current_b->next;
 	}
