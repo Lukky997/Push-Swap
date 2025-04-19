@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:41:36 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/15 11:22:04 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/19 13:12:57 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef struct s_element
 {
+	int					index;
 	int					number;
 	int					push_cost;
 	int					above_median;
@@ -59,11 +60,21 @@ char					**free_split(char **s);
 int						main(int argc, char **argv);
 int						pile_sorted(t_pile *pile);
 void					fill_a(t_pile *pile_a, char **argv);
-int						len_a(t_pile *pile_a);
 void					push_swap(t_pile *pile_a, t_pile *pile_b);
 void					sort_three(t_pile *pile_a);
 void					find_smallest_and_biggest(t_pile *pile_a,
 							t_pile *pile_b);
-void	find_target(t_pile *pile_a, t_pile *pile_b);
+void					find_target(t_pile *pile_a, t_pile *pile_b);
+int						ft_atoi(char *str);
+void					set_index(t_pile *pile);
+void					set_above_median(t_pile *pile);
+void					calculate_cost(t_pile *pile_a, t_pile *pile_b);
+t_element				*find_cheapest(t_pile *pile);
+void					do_move(t_pile *pile_a, t_pile *pile_b,
+							t_element *cheapest, int direction);
+void					do_cheapest_move(t_pile *pile_a, t_pile *pile_b,
+							int direction);
+void					finish_sort(t_pile *pile_a, t_pile *pile_b);
+void					rotate_to_min_top(t_pile *pile_a);
 
 #endif

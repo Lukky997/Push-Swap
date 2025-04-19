@@ -1,4 +1,4 @@
-CC = cc
+CC = cc -g
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 PRINTF_DIR = ft_printf
@@ -18,7 +18,6 @@ SRCS = \
 	$(PATH_CMDS)/sort_three.c \
 	$(PATH_SRCS)/pile_depile.c \
 	$(PATH_SRCS)/push_swap.c \
-	$(PATH_SRCS)/ft_split.c \
 	$(PATH_SRCS)/biggest_and_smallest.c \
 	$(PATH_SRCS)/utils.c \
 	$(PATH_SRCS)/target.c \

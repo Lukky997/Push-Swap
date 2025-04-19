@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:34:27 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/15 12:51:14 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/19 13:14:55 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char **argv)
 	fill_a(pile_a, numbers);
 	if (argc == 2)
 		free_split(numbers);
-	afficher_pile(pile_a);
 	if (!pile_sorted(pile_a))
 	{
 		if (pile_a->nb_element == 3)
@@ -41,10 +40,6 @@ int	main(int argc, char **argv)
 		else
 			push_swap(pile_a, pile_b);
 	}
-	afficher_pile(pile_a);
-	ft_printf("-------------");
-	suppression(pile_a);
-	suppression(pile_b);
 	return (0);
 }
 
@@ -55,22 +50,7 @@ void	fill_a(t_pile *pile_a, char **numbers)
 	i = 0;
 	while (numbers[i])
 	{
-		empiler(pile_a, atoi(numbers[i]));
+		empiler(pile_a, ft_atoi(numbers[i]));
 		i++;
 	}
-}
-
-int	len_a(t_pile *pile_a)
-{
-	int			index;
-	t_element	*current;
-
-	index = 0;
-	current = pile_a->first;
-	while (current)
-	{
-		index++;
-		current = current->next;
-	}
-	return (index);
 }
