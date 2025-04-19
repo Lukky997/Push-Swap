@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 12:28:38 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/19 14:53:27 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/19 16:26:58 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,13 @@ void	finish_sort(t_pile *pile_a, t_pile *pile_b)
 {
 	while (pile_b->nb_element > 0)
 	{
-		printf("je suis arriver la");
 		find_smallest_and_biggest(pile_a, pile_b);
 		set_index(pile_a);
 		set_index(pile_b);
 		set_above_median(pile_a);
 		set_above_median(pile_b);
-		find_target(pile_b, pile_a);
+		find_target(pile_a, pile_b);
 		calculate_cost(pile_b, pile_a);
-		do_cheapest_move(pile_b, pile_a, 1);
+		do_cheapest_move(pile_a, pile_b, 1);
 	}
 }

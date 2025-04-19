@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:01:26 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/19 14:51:12 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/19 15:10:13 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	pa(t_pile *pile_a, t_pile *pile_b)
 {
 	t_element	*temp;
 
+	if (!pile_b || !pile_b->first)
+		return ;
 	temp = pile_b->first;
 	pile_b->first = pile_b->first->next;
 	temp->next = pile_a->first;
@@ -29,6 +31,8 @@ void	pb(t_pile *pile_b, t_pile *pile_a)
 {
 	t_element	*temp;
 
+	if (!pile_a || !pile_a->first)
+		return ;
 	temp = pile_a->first;
 	pile_a->first = pile_a->first->next;
 	temp->next = pile_b->first;
@@ -37,3 +41,4 @@ void	pb(t_pile *pile_b, t_pile *pile_a)
 	pile_a->nb_element--;
 	ft_printf("pb\n");
 }
+

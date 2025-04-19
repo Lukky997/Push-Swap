@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 12:29:12 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/19 14:57:54 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/19 16:07:25 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	calculate_cost(t_pile *pile_a, t_pile *pile_b)
 	t_element	*current;
 
 	current = pile_a->first;
+
 	while (current)
 	{
 		current->push_cost = 0;

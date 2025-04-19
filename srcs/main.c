@@ -6,13 +6,29 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:34:27 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/19 13:14:55 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/19 16:11:32 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void	fill_a(t_pile *pile_a, char **argv);
+
+void test(t_pile *pile)
+{
+	t_element *current = pile->first;
+	while (current)
+	{
+		printf("Num: %d | Index: %d | Above_median: %d | Cost: %d | Target: %d\n",
+			current->number,
+			current->index,
+			current->above_median,
+			current->push_cost,
+			current->target_node ? current->target_node->number : -1);
+		current = current->next;
+	}
+}
+
 
 int	main(int argc, char **argv)
 {
