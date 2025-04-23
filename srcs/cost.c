@@ -5,90 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 12:29:12 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/19 16:07:25 by lgoras           ###   ########.fr       */
+/*   Created: 2025/04/23 12:23:17 by lgoras            #+#    #+#             */
+/*   Updated: 2025/04/23 14:23:34 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	set_index(t_pile *pile)
+void	get_cost(t_stack **stack_a, t_stack **stack_b)
 {
-	int			i;
-	t_element	*current;
+	t_stack	*current_a;
+	t_stack	*current_b;
+	int		size_a;
+	int		size_b;
 
-	i = 0;
-	current = pile->first;
-	while (current)
+	current_a = *stack_a;
+	current_b = *stack_b;
+	size_a = stack_len(current_a);
+	size_b = stack_len(current_b);
+	while (current_b)
 	{
-		current->index = i;
-		current = current->next;
-		i++;
+		current_b->cost_b = current_b->pos;
+		if (current_b->pos > size_b / 2)
+			current_b->cost_b = (size_b - current_b->pos) * -1;
+		current_b->cost_a = current_b->target_pos;
+		if (current_b->target_pos > size_a / 2)
+			current_b->cost_a = (size_a - current_b->target_pos) * -1;
+		current_b = current_b->next;
 	}
 }
 
-void	set_above_median(t_pile *pile)
+void	do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
 {
-	t_element	*current;
-	int			median;
+	t_stack	*current;
+	int		cheapest;
+	int		cost_a;
+	int		cost_b;
 
-	current = pile->first;
-	median = pile->nb_element / 2;
+	current = *stack_b;
+	cheapest = INT_MAX;
 	while (current)
 	{
-		current->above_median = current->index <= median;
-		current = current->next;
-	}
-}
-
-void	calculate_cost(t_pile *pile_a, t_pile *pile_b)
-{
-	t_element	*current;
-
-	current = pile_a->first;
-
-	while (current)
-	{
-		current->push_cost = 0;
-		if (!current->target_node)
+		if (nb_abs(current->cost_a)
+			+ nb_abs(current->cost_b) < nb_abs(cheapest))
 		{
-			current = current->next;
-			continue;
+			cheapest = nb_abs(current->cost_b) + nb_abs(current->cost_a);
+			cost_a = current->cost_a;
+			cost_b = current->cost_b;
 		}
-		if (current->above_median)
-			current->push_cost += current->index;
-		else
-			current->push_cost += pile_a->nb_element - current->index;
-		if (current->target_node->above_median)
-			current->push_cost += current->target_node->index;
-		else
-			current->push_cost += pile_b->nb_element
-				- current->target_node->index;
 		current = current->next;
 	}
-}
-
-
-t_element	*find_cheapest(t_pile *pile)
-{
-	t_element	*current;
-	t_element	*cheapest;
-
-	current = pile->first;
-	cheapest = current;
-	while (current)
-	{
-		if (current->push_cost < cheapest->push_cost)
-			cheapest = current;
-		current = current->next;
-	}
-	return (cheapest);
-}
-
-void	do_cheapest_move(t_pile *pile_a, t_pile *pile_b, int direction)
-{
-	t_element	*cheapest;
-
-	cheapest = find_cheapest(pile_a);
-	do_move(pile_a, pile_b, cheapest, direction);
+	do_move(stack_a, stack_b, cost_a, cost_b);
 }

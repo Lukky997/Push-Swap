@@ -6,67 +6,66 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:34:27 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/19 16:11:32 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/23 15:34:23 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	fill_a(t_pile *pile_a, char **argv);
-
-void test(t_pile *pile)
+int	stack_sorted(t_stack *stack)
 {
-	t_element *current = pile->first;
-	while (current)
+	while (stack->next)
 	{
-		printf("Num: %d | Index: %d | Above_median: %d | Cost: %d | Target: %d\n",
-			current->number,
-			current->index,
-			current->above_median,
-			current->push_cost,
-			current->target_node ? current->target_node->number : -1);
-		current = current->next;
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
 	}
+	return (1);
 }
 
+void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size)
+{
+	if (stack_size == 2 && !stack_sorted(*stack_a))
+		sa(stack_a);
+	else if (stack_size == 3)
+		sort_three(stack_a);
+	else if (stack_size > 3 && !stack_sorted(*stack_a))
+		sort(stack_a, stack_b);
+}
+
+void	call_function(t_stack *stack_a, t_stack *stack_b, int stack_size)
+{
+	get_index(stack_a, stack_size + 1);
+	push_swap(&stack_a, &stack_b, stack_size);
+	free_stack(&stack_a);
+	free_stack(&stack_b);
+}
 
 int	main(int argc, char **argv)
 {
-	t_pile	*pile_a;
-	t_pile	*pile_b;
-	char	**numbers;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	int		stack_size;
+	char	**result;
 
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	if (argc < 2)
 		return (0);
 	if (argc == 2)
-		numbers = ft_split(argv[1], ' ');
+	{
+		result = ft_split(argv[1], ' ');
+		if (!good_split(result))
+			send_error_split(result);
+		stack_a = split_init(result);
+		free_if_error(result);
+	}
 	else
-		numbers = argv + 1;
-	pile_a = initialisation();
-	pile_b = initialisation();
-	fill_a(pile_a, numbers);
-	if (argc == 2)
-		free_split(numbers);
-	if (!pile_sorted(pile_a))
 	{
-		if (pile_a->nb_element == 3)
-			sort_three(pile_a);
-		else if (pile_a->nb_element == 2)
-			sa(pile_a);
-		else
-			push_swap(pile_a, pile_b);
+		if (!is_correct_input(argv))
+			send_error(NULL, NULL);
+		stack_a = initialisation(argc, argv);
 	}
+	stack_b = NULL;
+	stack_size = stack_len(stack_a);
+	call_function(stack_a, stack_b, stack_size);
 	return (0);
-}
-
-void	fill_a(t_pile *pile_a, char **numbers)
-{
-	int	i;
-
-	i = 0;
-	while (numbers[i])
-	{
-		empiler(pile_a, ft_atoi(numbers[i]));
-		i++;
-	}
 }

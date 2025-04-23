@@ -6,7 +6,7 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:41:36 by lgoras            #+#    #+#             */
-/*   Updated: 2025/04/19 16:08:33 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/23 15:27:16 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,67 +14,74 @@
 # define PUSH_SWAP_H
 # include "../ft_printf/includes/ft_printf.h"
 # include <limits.h>
-# include <stdbool.h>
+# include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
 
-typedef struct s_element
+typedef struct s_stack
 {
-	int					index;
-	int					number;
-	int					push_cost;
-	int					above_median;
-	struct s_element	*target_node;
-	struct s_element	*next;
-}						t_element;
+	int				value;
+	int				index;
+	int				pos;
+	int				target_pos;
+	int				cost_a;
+	int				cost_b;
+	struct s_stack	*next;
+}					t_stack;
 
-typedef struct s_pile
-{
-	t_element			*first;
-	struct s_element	*smallest;
-	struct s_element	*biggest;
-	int					nb_element;
-}						t_pile;
+t_stack				*initialisation(int argc, char **argv);
+void				get_index(t_stack *stack_a, int stack_size);
 
-t_pile					*initialisation(void);
-void					empiler(t_pile *pile, int nouveau_number);
-void					suppression(t_pile *pile);
-void					afficher_pile(t_pile *pile);
-int						depiler(t_pile *pile);
-void					ft_swap(t_pile *pile);
-void					sa(t_pile *pile_a);
-void					sb(t_pile *pile_b);
-void					ss(t_pile *pile_a, t_pile *pile_b);
-void					pa(t_pile *pile_a, t_pile *pile_b);
-void					pb(t_pile *pile_b, t_pile *pile_a);
-void					rotate(t_pile *pile);
-void					ra(t_pile *pile_a);
-void					rb(t_pile *pile_b);
-void					rr(t_pile *pile_a, t_pile *pile_b);
-void					reverse_rotate(t_pile *pile);
-void					rra(t_pile *pile_a);
-void					rrb(t_pile *pile_b);
-void					rrr(t_pile *pile_a, t_pile *pile_b);
-char					**ft_split(char const *s, char c);
-char					**free_split(char **s);
-int						main(int argc, char **argv);
-int						pile_sorted(t_pile *pile);
-void					fill_a(t_pile *pile_a, char **argv);
-void					push_swap(t_pile *pile_a, t_pile *pile_b);
-void					sort_three(t_pile *pile_a);
-void					find_smallest_and_biggest(t_pile *pile_a,
-							t_pile *pile_b);
-void					find_target(t_pile *pile_a, t_pile *pile_b);
-int						ft_atoi(char *str);
-void					set_index(t_pile *pile);
-void					set_above_median(t_pile *pile);
-void					calculate_cost(t_pile *pile_a, t_pile *pile_b);
-t_element				*find_cheapest(t_pile *pile);
-void					do_move(t_pile *pile_a, t_pile *pile_b,
-							t_element *cheapest, int direction);
-void					do_cheapest_move(t_pile *pile_a, t_pile *pile_b,
-							int direction);
-void					finish_sort(t_pile *pile_a, t_pile *pile_b);
-void					rotate_to_min_top(t_pile *pile_a);
+int					stack_sorted(t_stack *stack);
+void				sort_three(t_stack **stack);
+void				sort(t_stack **stack_a, t_stack **stack_b);
+
+int					get_lowest_index_position(t_stack **stack);
+void				get_target_position(t_stack **stack_a, t_stack **stack_b);
+
+void				get_cost(t_stack **stack_a, t_stack **stack_b);
+void				do_cheapest_move(t_stack **stack_a, t_stack **stack_b);
+void				do_move(t_stack **stack_a, t_stack **stack_b, int cost_a,
+						int cost_b);
+
+void				pa(t_stack **stack_a, t_stack **stack_b);
+void				pb(t_stack **stack_a, t_stack **stack_b);
+void				sa(t_stack **stack_a);
+void				sb(t_stack **stack_b);
+void				ss(t_stack **stack_a, t_stack **stack_b);
+void				ra(t_stack **stack_a);
+void				rb(t_stack **stack_b);
+void				rr(t_stack **stack_a, t_stack **stack_b);
+void				rrr(t_stack **stack_a, t_stack **stack_b);
+void				rra(t_stack **stack_a);
+void				rrb(t_stack **stack_b);
+
+t_stack				*get_stack_bottom(t_stack *stack);
+t_stack				*get_stack_before_bottom(t_stack *stack);
+t_stack				*stack_new(int value);
+void				stack_add_bottom(t_stack **stack, t_stack *new);
+int					stack_len(t_stack *stack);
+
+long int			ft_atoi(const char *str);
+int					nb_abs(int nb);
+void				free_stack(t_stack **stack);
+void				send_error(t_stack **stack_a, t_stack **stack_b);
+
+int					is_correct_input(char **argv);
+int					is_digit(char c);
+int					is_sign(char c);
+int					nbstr_cmp(const char *s1, const char *s2);
+
+char				**ft_split(char const *s, char c);
+int					ft_strlen(const char *str);
+int					good_split(char **av);
+t_stack				*split_init(char **av);
+char				**free_if_error(char **split);
+
+void				call_function(t_stack *stack_a, t_stack *stack_b,
+						int stack_size);
+void				push_swap(t_stack **stack_a, t_stack **stack_b,
+						int stack_size);
+void				send_error_split(char **result);
 
 #endif

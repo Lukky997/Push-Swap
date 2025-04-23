@@ -6,41 +6,41 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:45:11 by lgoras            #+#    #+#             */
-/*   Updated: 2025/02/26 17:34:43 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/23 13:57:06 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_pile *pile)
+static	void	ft_swap(t_stack *stack)
 {
-	t_element	*temp;
-	t_element	*current;
+	int	current;
 
-	if (pile == NULL)
+	if (stack == NULL || stack->next == NULL)
 		return ;
-	current = pile->first;
-	temp = current->next;
-	current->next = current->next->next;
-	temp->next = current;
-	pile->first = temp;
+	current = stack->value;
+	stack->value = stack->next->value;
+	stack->next->value = current;
+	current = stack->index;
+	stack->index = stack->next->index;
+	stack->next->index = current;
 }
 
-void	sa(t_pile *pile_a)
+void	sa(t_stack **stack_a)
 {
-	ft_swap(pile_a);
+	ft_swap(*stack_a);
 	ft_printf("sa\n");
 }
 
-void	sb(t_pile *pile_b)
+void	sb(t_stack **stack_b)
 {
-	ft_swap(pile_b);
+	ft_swap(*stack_b);
 	ft_printf("sb\n");
 }
 
-void	ss(t_pile *pile_a, t_pile *pile_b)
+void	ss(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_swap(pile_a);
-	ft_swap(pile_b);
+	ft_swap(*stack_a);
+	ft_swap(*stack_b);
 	ft_printf("ss\n");
 }

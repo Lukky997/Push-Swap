@@ -8,22 +8,28 @@ INCLUDE = includes
 
 PATH_SRCS = srcs
 PATH_CMDS = $(PATH_SRCS)/commands
+PATH_UTILS = $(PATH_SRCS)/utils
+PATH_SPLIT = $(PATH_SRCS)/split
 HEADER = $(INCLUDE)/push_swap.h
 
 SRCS = \
-	$(PATH_CMDS)/ft_swap.c \
 	$(PATH_CMDS)/ft_push.c \
-	$(PATH_CMDS)/ft_rotate.c \
 	$(PATH_CMDS)/ft_reverse_rotate.c \
-	$(PATH_CMDS)/sort_three.c \
-	$(PATH_SRCS)/pile_depile.c \
-	$(PATH_SRCS)/push_swap.c \
-	$(PATH_SRCS)/biggest_and_smallest.c \
-	$(PATH_SRCS)/utils.c \
-	$(PATH_SRCS)/target.c \
+	$(PATH_CMDS)/ft_rotate.c \
+	$(PATH_CMDS)/ft_swap.c \
+	$(PATH_CMDS)/sort.c \
+	$(PATH_SPLIT)/parsing_split.c \
+	$(PATH_SPLIT)/split_init.c \
+	$(PATH_SPLIT)/split.c \
+	$(PATH_UTILS)/check_arg_utils.c \
+	$(PATH_UTILS)/stack_utils.c \
+	$(PATH_UTILS)/utils.c \
+	$(PATH_SRCS)/check_arg.c \
 	$(PATH_SRCS)/cost.c \
-	$(PATH_SRCS)/algo.c \
-	$(PATH_SRCS)/main.c
+	$(PATH_SRCS)/initialisation.c \
+	$(PATH_SRCS)/main.c \
+	$(PATH_SRCS)/move.c \
+	$(PATH_SRCS)/target.c
 
 OBJS = $(SRCS:.c=.o)
 

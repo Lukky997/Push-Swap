@@ -6,41 +6,39 @@
 /*   By: lgoras < lgoras@student.42.fr >            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:56:04 by lgoras            #+#    #+#             */
-/*   Updated: 2025/02/26 17:34:56 by lgoras           ###   ########.fr       */
+/*   Updated: 2025/04/23 14:27:52 by lgoras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate(t_pile *pile)
+static void	ft_rotate(t_stack **stack)
 {
-	t_element	*temp;
-	t_element	*current;
+	t_stack	*current;
+	t_stack	*tail;
 
-	current = pile->first;
-	temp = pile->first;
-	pile->first = pile->first->next;
-	while (current->next)
-		current = current->next;
-	temp->next = NULL;
-	current->next = temp;
+	current = *stack;
+	*stack = (*stack)->next;
+	tail = get_stack_bottom(*stack);
+	current->next = NULL;
+	tail->next = current;
 }
 
-void	ra(t_pile *pile_a)
+void	ra(t_stack **stack_a)
 {
-	rotate(pile_a);
+	ft_rotate(stack_a);
 	ft_printf("ra\n");
 }
 
-void	rb(t_pile *pile_b)
+void	rb(t_stack **stack_b)
 {
-	ra(pile_b);
+	ft_rotate(stack_b);
 	ft_printf("rb\n");
 }
 
-void	rr(t_pile *pile_a, t_pile *pile_b)
+void	rr(t_stack **stack_a, t_stack **stack_b)
 {
-	rotate(pile_a);
-	rotate(pile_b);
+	ft_rotate(stack_a);
+	ft_rotate(stack_b);
 	ft_printf("rr\n");
 }
